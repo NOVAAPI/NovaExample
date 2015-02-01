@@ -19,6 +19,6 @@ public class NovaTest implements Loadable {
 	@Override
 	public void preInit() {
 		blockTest = Game.instance.get().blockManager.registerBlock(BlockTest.class);
-		blockTestTexture = Game.instance.get().renderManager.registerTexture(new BlockTexture("blockSteel"));
+		blockTestTexture = Game.instance.get().renderManager.registerTexture(new BlockTexture("novatest:blockSteel"));
 	}
 }
