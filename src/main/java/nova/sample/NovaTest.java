@@ -14,10 +14,11 @@ import nova.core.render.BlockTexture;
 public class NovaTest implements Loadable {
 
 	public Block blockTest;
+	public static BlockTexture blockTestTexture;
 
 	@Override
 	public void preInit() {
 		blockTest = Game.instance.get().blockManager.registerBlock(BlockTest.class);
-		Game.instance.get().renderManager.registerTexture(new BlockTexture("blockSteel"));
+		blockTestTexture = Game.instance.get().renderManager.registerTexture(new BlockTexture("novatest:blockSteel"));
 	}
 }
