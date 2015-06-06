@@ -15,6 +15,7 @@ import nova.core.network.Sync;
 import nova.core.render.model.Model;
 import nova.core.retention.Storable;
 import nova.core.retention.Store;
+import nova.core.util.Identifiable;
 import nova.core.util.transform.matrix.Quaternion;
 
 /**
@@ -72,6 +73,11 @@ public class BlockStateful extends Block implements Storable, Stateful, Syncable
 	@Override
 	public String getID() {
 		return "stateful";
+	}
+
+	@Override
+	public boolean sameType(Identifiable other) {
+		return other.getID().equals(getID());
 	}
 
 	public static interface TestInterface {

@@ -7,6 +7,7 @@ import nova.core.component.misc.Collider;
 import nova.core.component.renderer.ItemRenderer;
 import nova.core.network.Syncable;
 import nova.core.network.Packet;
+import nova.core.util.Identifiable;
 
 import java.util.Optional;
 
@@ -45,5 +46,10 @@ public class BlockStateless extends Block implements Syncable {
 	@Override
 	public String getID() {
 		return "simple";
+	}
+
+	@Override
+	public boolean sameType(Identifiable other) {
+		return other.getID().equals(getID());
 	}
 }
