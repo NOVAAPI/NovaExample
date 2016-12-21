@@ -5,8 +5,7 @@ import nova.core.block.BlockManager;
 import nova.core.item.ItemFactory;
 import nova.core.item.ItemManager;
 import nova.core.loader.Loadable;
-import nova.core.loader.NovaMod;
-import nova.core.nativewrapper.NativeManager;
+import nova.core.loader.Mod;
 import nova.core.network.NetworkManager;
 import nova.core.recipes.RecipeManager;
 import nova.core.recipes.crafting.ItemIngredient;
@@ -22,7 +21,7 @@ import nova.core.render.texture.EntityTexture;
  *
  * @author Calclavia
  */
-@NovaMod(id = NovaBlock.id, name = "Nova Example Block", version = "0.0.1", novaVersion = "0.0.1")
+@Mod(id = NovaBlock.id, name = "Nova Example Block", version = "0.0.1", novaVersion = "0.0.1")
 public class NovaBlock implements Loadable {
 
 	public static final String id = "novablock";
@@ -62,16 +61,16 @@ public class NovaBlock implements Loadable {
 
 	@Override
 	public void preInit() {
-		steelTexture = renderManager.registerTexture(new BlockTexture(id, "blockSteel"));
+		steelTexture = renderManager.registerTexture(new BlockTexture(id, "block_steel"));
 		grinderTexture = renderManager.registerTexture(new BlockTexture(id, "grinder"));
 
-		blockStateful = blockManager.register(BlockStateful.class);
-		blockStateless = blockManager.register(BlockStateless.class);
+		blockStateful = blockManager.register("stateful", BlockStateful::new);
+		blockStateless = blockManager.register("simple", BlockStateless::new);
 
 		itemBlockStateful = itemManager.getItemFromBlock(blockStateful);
 		itemBlockStateless = itemManager.getItemFromBlock(blockStateless);
 
-		grinderEntityTexture = renderManager.registerTexture(new EntityTexture(id, "grinderEntity"));
+		grinderEntityTexture = renderManager.registerTexture(new EntityTexture(id, "grinder_entity"));
 
 		grinderModel = renderManager.registerModel(new TechneModelProvider(id, "grinder"));
 
@@ -79,6 +78,6 @@ public class NovaBlock implements Loadable {
 		ItemIngredient stickIngredient = ItemIngredient.forItem("minecraft:stick"); //TODO: This should be obtained from some dictonary too
 		ItemIngredient ingotIngredient = ItemIngredient.forDictionary("ingotIron");
 
-		recipeManager.addRecipe(new ShapedCraftingRecipe(itemBlockStateless.makeItem(), "AAA-ABA-AAA", ingotIngredient, stickIngredient));
+		recipeManager.addRecipe(new ShapedCraftingRecipe(itemBlockStateless.build(), "AAA-ABA-AAA", ingotIngredient, stickIngredient));
 	}
 }

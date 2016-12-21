@@ -2,22 +2,22 @@ package nova.sample.gui;
 
 import nova.core.block.BlockFactory;
 import nova.core.block.BlockManager;
-import nova.core.gui.Background;
-import nova.core.gui.ComponentEvent.ActionEvent;
-import nova.core.gui.Gui;
-import nova.core.gui.GuiEvent.BindEvent;
-import nova.core.gui.GuiEvent.UnBindEvent;
-import nova.core.gui.component.Button;
-import nova.core.gui.component.Container;
-import nova.core.gui.component.Label;
-import nova.core.gui.component.inventory.Slot;
-import nova.core.gui.factory.GuiManager;
-import nova.core.gui.layout.Anchor;
-import nova.core.gui.layout.FlowLayout;
+import nova.gui.Background;
+import nova.gui.ComponentEvent.ActionEvent;
+import nova.gui.Gui;
+import nova.gui.GuiEvent.BindEvent;
+import nova.gui.GuiEvent.UnBindEvent;
+import nova.gui.component.Button;
+import nova.gui.component.Container;
+import nova.gui.component.Label;
+import nova.gui.component.inventory.Slot;
+import nova.gui.factory.GuiManager;
+import nova.gui.layout.Anchor;
+import nova.gui.layout.FlowLayout;
 import nova.core.item.ItemFactory;
 import nova.core.item.ItemManager;
 import nova.core.loader.Loadable;
-import nova.core.loader.NovaMod;
+import nova.core.loader.Mod;
 import nova.core.network.NetworkManager;
 import nova.core.network.NetworkTarget.Side;
 import nova.core.recipes.RecipeManager;
@@ -33,7 +33,7 @@ import nova.sample.gui.block.BlockSimpleTest;
  *
  * @author Calclavia
  */
-@NovaMod(id = NovaGui.id, name = "Nova GUI example", version = "0.0.1", novaVersion = "0.0.1")
+@Mod(id = NovaGui.id, name = "Nova GUI example", version = "0.0.1", novaVersion = "0.0.1")
 public class NovaGui implements Loadable {
 
 	public static final String id = "novagui";
@@ -67,7 +67,7 @@ public class NovaGui implements Loadable {
 	}
 
 	public static void initializeGUI() {
-		guiFactory.register(() -> new Gui("testgui")
+		guiFactory.register("testgui", () -> new Gui("testgui")
 				.add(new Button("testbutton2", "I'm EAST")
 					.setMaximumSize(Integer.MAX_VALUE, 120)
 
@@ -103,7 +103,7 @@ public class NovaGui implements Loadable {
 
 	@Override
 	public void preInit() {
-		blockTest = blockManager.register(BlockSimpleTest.class);
+		blockTest = blockManager.register("gui", BlockSimpleTest::new);
 
 		itemBlockTest = itemManager.getItemFromBlock(blockTest);
 
@@ -112,7 +112,7 @@ public class NovaGui implements Loadable {
 		// try to add a recipe
 		ItemIngredient stickIngredient = ItemIngredient.forItem("minecraft:stick"); //TODO: This should be obtained from some dictonary too
 		ItemIngredient ingotIngredient = ItemIngredient.forDictionary("ingotIron");
-		recipeManager.addRecipe(new ShapedCraftingRecipe(itemBlockTest.makeItem(), "AAA-ABA-AAA", ingotIngredient, stickIngredient));
+		recipeManager.addRecipe(new ShapedCraftingRecipe(itemBlockTest.build(), "AAA-ABA-AAA", ingotIngredient, stickIngredient));
 
 		initializeGUI();
 	}
