@@ -107,7 +107,7 @@ public class NovaGui implements Loadable {
 
 		itemBlockTest = itemManager.getItemFromBlock(blockTest);
 
-		steelTexture = renderManager.registerTexture(new BlockTexture(id, "blockSteel"));
+		steelTexture = renderManager.registerTexture(new BlockTexture(id, "block_steel"));
 
 		// try to add a recipe
 		ItemIngredient stickIngredient = ItemIngredient.forItem("minecraft:stick"); //TODO: This should be obtained from some dictonary too

@@ -22,13 +22,13 @@ subprojects {
 	nova {
 		wrappers {
 			"17" {
-				wrapper "nova.core:NOVA-Core-Wrapper-MC1.7:0.1.0-SNAPSHOT"
+				wrapper "nova.core:NOVA-Core-Wrapper-MC1.7:$nova_version"
 			}
 			"18" {
-				wrapper "nova.core:NOVA-Core-Wrapper-MC1.8:0.1.0-SNAPSHOT"
+				wrapper "nova.core:NOVA-Core-Wrapper-MC1.8:$nova_version"
 			}
 			"1_11" {
-				wrapper "nova.core:NOVA-Core-Wrapper-MC1.11:0.1.0-SNAPSHOT"
+				wrapper "nova.core:NOVA-Core-Wrapper-MC1.11:$nova_version"
 			}
 		}
 	}
