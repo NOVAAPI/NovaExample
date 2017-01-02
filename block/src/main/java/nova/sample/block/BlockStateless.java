@@ -14,13 +14,11 @@ import nova.core.network.Syncable;
 public class BlockStateless extends Block implements Syncable {
 
 	public BlockStateless() {
-//		components.add(new StaticBlockRenderer()).setTexture(NovaBlock.steelTexture);
-
+		//components.add(new StaticBlockRenderer(this)).setTexture(NovaBlock.steelTexture); // TODO: Removed
 		components.add(new Collider(this));
-
-		components.add(new ItemRenderer(this));
-
+		components.add(new ItemRenderer(this)); // TODO: Deprecated
 		components.add(new Category("buildingBlocks"));
+
 		events.on(RightClickEvent.class).bind(this::onRightClick);
 	}
 

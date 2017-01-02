@@ -11,7 +11,7 @@ public class ItemScrewdriver extends Item {
 
 	public ItemScrewdriver() {
 		components.add(new Category("tools"));
-		components.add(new ItemRenderer()).setTexture(NovaItem.screwTexture);
+		components.add(new ItemRenderer()).setTexture(NovaItem.screwTexture); // TODO: Deprecated
 
 		events.on(UseEvent.class).bind(event -> event.action = true);
 	}
