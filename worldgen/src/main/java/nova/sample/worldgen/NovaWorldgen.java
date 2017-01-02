@@ -36,10 +36,10 @@ public class NovaWorldgen implements Loadable {
 	public final WorldgenManager worldgenManager;
 
 	public NovaWorldgen(BlockManager blockManager,
-						ItemManager itemManager,
-						RenderManager renderManager,
-						RecipeManager recipeManager,
-						WorldgenManager worldgenManager) {
+	                    ItemManager itemManager,
+	                    RenderManager renderManager,
+	                    RecipeManager recipeManager,
+	                    WorldgenManager worldgenManager) {
 		this.blockManager = blockManager;
 		this.itemManager = itemManager;
 		this.renderManager = renderManager;
