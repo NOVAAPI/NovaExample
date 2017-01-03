@@ -10,10 +10,10 @@ import nova.core.recipes.RecipeManager;
 import nova.core.render.RenderManager;
 import nova.core.render.texture.BlockTexture;
 import nova.core.render.texture.ItemTexture;
+import nova.core.util.EnumSelector;
 import nova.worldgen.WorldgenManager;
 import nova.worldgen.ore.Ore;
 import nova.worldgen.ore.OreHeight;
-import nova.worldgen.util.EnumSelector;
 
 @Mod(id = NovaWorldgen.id, name = "Nova Worldgen Example", version = "0.0.1", novaVersion = "0.0.1")
 public class NovaWorldgen implements Loadable {
@@ -57,10 +57,7 @@ public class NovaWorldgen implements Loadable {
 
 		itemBlockSteelOre = itemManager.getItemFromBlock(blockSteelOre);
 
-		EnumSelector<OreHeight> oreSteelEnumSelector = EnumSelector.of(OreHeight.class);
-		oreSteelEnumSelector.blockAll();
-		oreSteelEnumSelector.apart(OreHeight.DEEP);
-		oreSteelEnumSelector.lock();
-		oreSteel = worldgenManager.register(new Ore("steel_ore", blockSteelOre, 1, 1, oreSteelEnumSelector));
+		oreSteel = worldgenManager.register(new Ore("steel_ore", blockSteelOre, 1, 1,
+				EnumSelector.of(OreHeight.class).blockAll().apart(OreHeight.DEEP).lock()));
 	}
 }
