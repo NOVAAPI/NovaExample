@@ -36,7 +36,7 @@ import nova.sample.gui.block.BlockSimpleTest;
 @Mod(id = NovaGui.id, name = "Nova GUI example", version = "0.0.1", novaVersion = "0.0.1")
 public class NovaGui implements Loadable {
 
-	public static final String id = "novagui";
+	public static final String id = "novaexamplegui";
 
 	public static BlockFactory blockTest;
 	public static ItemFactory itemBlockTest;

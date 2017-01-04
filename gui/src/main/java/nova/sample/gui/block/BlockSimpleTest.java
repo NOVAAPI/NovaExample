@@ -10,7 +10,9 @@ import nova.core.network.Syncable;
 import nova.core.network.Packet;
 import nova.sample.gui.NovaGui;
 
-import java.util.Optional;
+import nova.core.component.renderer.StaticRenderer;
+import nova.core.render.model.MeshModel;
+import nova.core.render.pipeline.BlockRenderPipeline;
 
 /**
  * Literally, this is a test block.
@@ -21,12 +23,12 @@ public class BlockSimpleTest extends Block implements Syncable {
 	public Inventory inventory = new InventorySimple(1);
 
 	public BlockSimpleTest() {
-		//components.add(new StaticBlockRenderer(this)).setTexture((dir) -> Optional.of(NovaGui.steelTexture));
-
+		components.add(new StaticRenderer().onRender(model -> {
+			if (model instanceof MeshModel)
+				new BlockRenderPipeline(this).withTexture(NovaGui.steelTexture).draw((MeshModel) model);
+		}));
 		components.add(new Collider(this));
-
 		components.add(new ItemRenderer(this));
-
 		components.add(new Category("buildingBlocks"));
 		events.on(RightClickEvent.class).bind(this::onRightClick);
 	}

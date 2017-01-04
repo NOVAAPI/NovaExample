@@ -75,7 +75,8 @@ public class NovaBlock implements Loadable {
 		grinderModel = renderManager.registerModel(new TechneModelProvider(id, "grinder"));
 
 		// try to add a recipe
-		ItemIngredient stickIngredient = ItemIngredient.forItem("minecraft:stick"); //TODO: This should be obtained from some dictonary too
+		//ItemIngredient stickIngredient = ItemIngredient.forItem("minecraft:stick"); //TODO: This should be obtained from some dictonary too
+		ItemIngredient stickIngredient = ItemIngredient.forDictionary("stickWood");
 		ItemIngredient ingotIngredient = ItemIngredient.forDictionary("ingotIron");
 
 		recipeManager.addRecipe(new ShapedCraftingRecipe(itemBlockStateless.build(), "AAA-ABA-AAA", ingotIngredient, stickIngredient));

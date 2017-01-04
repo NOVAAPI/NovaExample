@@ -4,8 +4,11 @@ import nova.core.block.Block;
 import nova.core.component.Category;
 import nova.core.component.misc.Collider;
 import nova.core.component.renderer.ItemRenderer;
+import nova.core.component.renderer.StaticRenderer;
 import nova.core.network.Packet;
 import nova.core.network.Syncable;
+import nova.core.render.model.MeshModel;
+import nova.core.render.pipeline.BlockRenderPipeline;
 
 /**
  * Literally, this is a test block.
@@ -14,7 +17,10 @@ import nova.core.network.Syncable;
 public class BlockStateless extends Block implements Syncable {
 
 	public BlockStateless() {
-		//components.add(new StaticBlockRenderer(this)).setTexture(NovaBlock.steelTexture); // TODO: Removed
+		components.add(new StaticRenderer().onRender(model -> {
+			if (model instanceof MeshModel)
+				new BlockRenderPipeline(this).withTexture(NovaBlock.steelTexture).draw((MeshModel) model);
+		}));
 		components.add(new Collider(this));
 		components.add(new ItemRenderer(this)); // TODO: Deprecated
 		components.add(new Category("buildingBlocks"));

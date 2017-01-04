@@ -34,7 +34,6 @@ public class BlockStateful extends Block implements Storable, Stateful, Syncable
 
 	public BlockStateful() {
 		components.add(new Collider(this).isOpaqueCube(false));
-
 		components.add(new StaticRenderer()
 				.onRender(model -> {
 						Model grinderModel = NovaBlock.grinderModel.getModel();
