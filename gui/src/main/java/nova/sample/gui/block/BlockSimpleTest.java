@@ -23,10 +23,7 @@ public class BlockSimpleTest extends Block implements Syncable {
 	public Inventory inventory = new InventorySimple(1);
 
 	public BlockSimpleTest() {
-		components.add(new StaticRenderer().onRender(model -> {
-			if (model instanceof MeshModel)
-				new BlockRenderPipeline(this).withTexture(NovaGui.steelTexture).draw((MeshModel) model);
-		}));
+		components.add(new StaticRenderer().onRender(new BlockRenderPipeline(this).withTexture(NovaGui.steelTexture).build()));
 		components.add(new Collider(this));
 		components.add(new ItemRenderer(this));
 		components.add(new Category("buildingBlocks"));

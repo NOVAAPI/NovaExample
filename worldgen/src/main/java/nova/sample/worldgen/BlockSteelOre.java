@@ -20,10 +20,7 @@ import nova.core.render.pipeline.BlockRenderPipeline;
 public class BlockSteelOre extends Block {
 
 	public BlockSteelOre() {
-		components.add(new StaticRenderer().onRender(model -> {
-			if (model instanceof MeshModel)
-				new BlockRenderPipeline(this).withTexture(NovaWorldgen.steelOreTexture).draw((MeshModel) model);
-		}));
+		components.add(new StaticRenderer().onRender(new BlockRenderPipeline(this).withTexture(NovaWorldgen.steelOreTexture).build()));
 		components.add(new Collider(this));
 		components.add(new ItemRenderer(this));
 		components.add(new Category("buildingBlocks"));

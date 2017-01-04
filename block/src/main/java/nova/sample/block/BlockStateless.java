@@ -7,7 +7,6 @@ import nova.core.component.renderer.ItemRenderer;
 import nova.core.component.renderer.StaticRenderer;
 import nova.core.network.Packet;
 import nova.core.network.Syncable;
-import nova.core.render.model.MeshModel;
 import nova.core.render.pipeline.BlockRenderPipeline;
 
 /**
@@ -17,10 +16,7 @@ import nova.core.render.pipeline.BlockRenderPipeline;
 public class BlockStateless extends Block implements Syncable {
 
 	public BlockStateless() {
-		components.add(new StaticRenderer().onRender(model -> {
-			if (model instanceof MeshModel)
-				new BlockRenderPipeline(this).withTexture(NovaBlock.steelTexture).draw((MeshModel) model);
-		}));
+		components.add(new StaticRenderer().onRender(new BlockRenderPipeline(this).withTexture(NovaBlock.steelTexture).build()));
 		components.add(new Collider(this));
 		components.add(new ItemRenderer(this)); // TODO: Deprecated
 		components.add(new Category("buildingBlocks"));
