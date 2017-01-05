@@ -64,8 +64,8 @@ public class NovaBlock implements Loadable {
 		steelTexture = renderManager.registerTexture(new BlockTexture(id, "block_steel"));
 		grinderTexture = renderManager.registerTexture(new BlockTexture(id, "grinder"));
 
-		blockStateful = blockManager.register("stateful", BlockStateful::new);
-		blockStateless = blockManager.register("simple", BlockStateless::new);
+		blockStateless = blockManager.register(id + ":simple", BlockStateless::new);
+		blockBasicDuster = blockManager.register(id + ":basic_duster", BasicDuster::new);
 
 		itemBlockStateful = itemManager.getItemFromBlock(blockStateful);
 		itemBlockStateless = itemManager.getItemFromBlock(blockStateless);

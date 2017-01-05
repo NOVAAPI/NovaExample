@@ -103,14 +103,15 @@ public class NovaGui implements Loadable {
 
 	@Override
 	public void preInit() {
-		blockTest = blockManager.register("gui", BlockSimpleTest::new);
+		blockTest = blockManager.register(id + ":gui", BlockSimpleTest::new);
 
 		itemBlockTest = itemManager.getItemFromBlock(blockTest);
 
 		steelTexture = renderManager.registerTexture(new BlockTexture(id, "block_steel"));
 
 		// try to add a recipe
-		ItemIngredient stickIngredient = ItemIngredient.forItem("minecraft:stick"); //TODO: This should be obtained from some dictonary too
+		//ItemIngredient stickIngredient = ItemIngredient.forItem("minecraft:stick"); //TODO: This should be obtained from some dictonary too
+		ItemIngredient stickIngredient = ItemIngredient.forDictionary("stickWood");
 		ItemIngredient ingotIngredient = ItemIngredient.forDictionary("ingotIron");
 		recipeManager.addRecipe(new ShapedCraftingRecipe(itemBlockTest.build(), "AAA-ABA-AAA", ingotIngredient, stickIngredient));
 

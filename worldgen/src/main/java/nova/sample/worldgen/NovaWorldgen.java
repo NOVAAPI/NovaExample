@@ -52,12 +52,12 @@ public class NovaWorldgen implements Loadable {
 		steelOreTexture = renderManager.registerTexture(new BlockTexture(id, "ore_steel"));
 		steelIngotTexture = renderManager.registerTexture(new ItemTexture(id, "ingot_steel"));
 
-		blockSteelOre = blockManager.register("steel_ore", BlockSteelOre::new);
-		itemSteelIngot = itemManager.register("steel_ingot", ItemSteelIngot::new);
+		blockSteelOre = blockManager.register(id + ":steel_ore", BlockSteelOre::new);
+		itemSteelIngot = itemManager.register(id + ":steel_ingot", ItemSteelIngot::new);
 
 		itemBlockSteelOre = itemManager.getItemFromBlock(blockSteelOre);
 
-		oreSteel = worldgenManager.register(new Ore("steel_ore", blockSteelOre, 1, 1,
+		oreSteel = worldgenManager.register(new Ore(id + ":steel_ore", blockSteelOre, 1, 1,
 				EnumSelector.of(OreHeight.class).blockAll().apart(OreHeight.DEEP).lock()));
 	}
 }
