@@ -12,6 +12,7 @@ import nova.core.network.NetworkTarget;
 import nova.core.network.Packet;
 import nova.core.network.Syncable;
 import nova.core.network.Sync;
+import nova.core.render.model.MeshModel;
 import nova.core.render.model.Model;
 import nova.core.retention.Storable;
 import nova.core.retention.Store;
@@ -32,11 +33,9 @@ public class BlockStateful extends Block implements Storable, Stateful, Syncable
 	private double angle = 0;
 
 	public BlockStateful() {
-
-		add(new Collider(this).isOpaqueCube(false));
-
-		add(new StaticRenderer(this)
-				.setOnRender(model -> {
+		components.add(new Collider(this).isOpaqueCube(false));
+		components.add(new StaticRenderer()
+				.onRender(model -> {
 						Model grinderModel = NovaBlock.grinderModel.getModel();
 
 						grinderModel
@@ -44,13 +43,15 @@ public class BlockStateful extends Block implements Storable, Stateful, Syncable
 							.matrix.rotate(new Rotation(RotationUtil.DEFAULT_ORDER,0, 0, angle));
 
 						model.children.add(grinderModel);
-						model.bindAll(NovaBlock.grinderTexture);
+
+						if (model instanceof MeshModel)
+							((MeshModel)model).bindAll(NovaBlock.grinderTexture);
 					}
 				)
 		);
-		add(new ItemRenderer(this));
-		add(new Category("buildingBlocks"));
-		//add(new TestComponent());
+		components.add(new ItemRenderer(this));
+		components.add(new Category("buildingBlocks"));
+		//components.add(new TestComponent());
 
 		events.on(RightClickEvent.class).bind(this::onRightClick);
 	}
@@ -68,11 +69,6 @@ public class BlockStateful extends Block implements Storable, Stateful, Syncable
 	public void read(Packet packet) {
 		Syncable.super.read(packet);
 		world().markStaticRender(position());
-	}
-
-	@Override
-	public String getID() {
-		return "stateful";
 	}
 
 	public static interface TestInterface {

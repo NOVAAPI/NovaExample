@@ -10,15 +10,9 @@ import nova.core.item.Item;
 public class ItemScrewdriver extends Item {
 
 	public ItemScrewdriver() {
-		add(new Category("tools"));
-		add(new ItemRenderer())
-			.setTexture(NovaItem.screwTexture);
+		components.add(new Category("tools"));
+		components.add(new ItemRenderer()).setTexture(NovaItem.screwTexture); // TODO: Deprecated
 
 		events.on(UseEvent.class).bind(event -> event.action = true);
-	}
-
-	@Override
-	public String getID() {
-		return "testscrewdriver";
 	}
 }
