@@ -15,9 +15,9 @@ import nova.worldgen.WorldgenManager;
 import nova.worldgen.ore.Ore;
 import nova.worldgen.ore.OreHeight;
 
-@Mod(id = NovaWorldgen.id, name = "Nova Worldgen Example", version = "0.0.1", novaVersion = "0.0.1")
+@Mod(id = NovaWorldgen.MOD_ID, name = "Nova Worldgen Example", version = "0.0.1", novaVersion = "0.0.1")
 public class NovaWorldgen implements Loadable {
-	public static final String id = "novaexampleworldgen";
+	public static final String MOD_ID = "novaexampleworldgen";
 
 	public static BlockFactory blockSteelOre;
 
@@ -49,15 +49,15 @@ public class NovaWorldgen implements Loadable {
 
 	@Override
 	public void preInit() {
-		steelOreTexture = renderManager.registerTexture(new BlockTexture(id, "ore_steel"));
-		steelIngotTexture = renderManager.registerTexture(new ItemTexture(id, "ingot_steel"));
+		steelOreTexture = renderManager.registerTexture(new BlockTexture(MOD_ID, "ore_steel"));
+		steelIngotTexture = renderManager.registerTexture(new ItemTexture(MOD_ID, "ingot_steel"));
 
-		blockSteelOre = blockManager.register(id + ":steel_ore", BlockSteelOre::new);
-		itemSteelIngot = itemManager.register(id + ":steel_ingot", ItemSteelIngot::new);
+		blockSteelOre = blockManager.register(MOD_ID + ":steel_ore", BlockSteelOre::new);
+		itemSteelIngot = itemManager.register(MOD_ID + ":steel_ingot", ItemSteelIngot::new);
 
 		itemBlockSteelOre = itemManager.getItemFromBlock(blockSteelOre);
 
-		oreSteel = worldgenManager.register(new Ore(id + ":steel_ore", blockSteelOre, 1, 1,
+		oreSteel = worldgenManager.register(new Ore(MOD_ID + ":steel_ore", blockSteelOre, 1, 1,
 				EnumSelector.of(OreHeight.class).blockAll().apart(OreHeight.DEEP).lock()));
 	}
 }

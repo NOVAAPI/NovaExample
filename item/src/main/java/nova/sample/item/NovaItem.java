@@ -14,9 +14,9 @@ import nova.core.render.texture.ItemTexture;
 /**
  * Created by magik6k on 5/29/15.
  */
-@Mod(id = NovaItem.id, name = "Nova Example Item", version = "0.0.1", novaVersion = "0.0.1")
+@Mod(id = NovaItem.MOD_ID, name = "Nova Example Item", version = "0.0.1", novaVersion = "0.0.1")
 public class NovaItem implements Loadable {
-	public static final String id = "novaitem";
+	public static final String MOD_ID = "novaitem";
 
 	public static ItemFactory itemScrewdriver;
 	public static ItemTexture screwTexture;
@@ -25,7 +25,9 @@ public class NovaItem implements Loadable {
 	public final RenderManager renderManager;
 	public final RecipeManager recipeManager;
 
-	public NovaItem(ItemManager itemManager, RenderManager renderManager, RecipeManager recipeManager) {
+	public NovaItem(ItemManager itemManager,
+	                RenderManager renderManager,
+	                RecipeManager recipeManager) {
         this.itemManager = itemManager;
         this.renderManager = renderManager;
         this.recipeManager = recipeManager;
@@ -33,8 +35,8 @@ public class NovaItem implements Loadable {
 
 	@Override
 	public void preInit() {
-		screwTexture = renderManager.registerTexture(new ItemTexture(id, "screwdriver"));
-		itemScrewdriver = itemManager.register(id + ":testscrewdriver", ItemScrewdriver::new);
+		screwTexture = renderManager.registerTexture(new ItemTexture(MOD_ID, "screwdriver"));
+		itemScrewdriver = itemManager.register(MOD_ID + ":testscrewdriver", ItemScrewdriver::new);
 
 		//ItemIngredient stickIngredient = ItemIngredient.forItem("minecraft:stick"); //TODO: This should be obtained from some dictonary too
 		ItemIngredient stickIngredient = ItemIngredient.forDictionary("stickWood");

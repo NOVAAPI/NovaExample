@@ -15,15 +15,16 @@ import nova.core.render.RenderManager;
  *
  * @author ExE Boss
  */
-@Mod(id = NovaEntity.id, name = "Nova Example Entity", version = "0.0.1", novaVersion = "0.0.1")
+@Mod(id = NovaEntity.MOD_ID, name = "Nova Example Entity", version = "0.0.1", novaVersion = "0.0.1")
 public class NovaEntity implements Loadable {
 
-	public static final String id = "novaentity";
+	public static final String MOD_ID = "novaentity";
 
 	public final EntityManager entityManager;
 	public final RenderManager renderManager;
 
-	public NovaEntity(EntityManager entityManager, RenderManager renderManager) {
+	public NovaEntity(EntityManager entityManager,
+	                  RenderManager renderManager) {
 		this.entityManager = entityManager;
 		this.renderManager = renderManager;
 	}

@@ -33,10 +33,10 @@ import nova.sample.gui.block.BlockSimpleTest;
  *
  * @author Calclavia
  */
-@Mod(id = NovaGui.id, name = "Nova GUI example", version = "0.0.1", novaVersion = "0.0.1")
+@Mod(id = NovaGui.MOD_ID, name = "Nova GUI example", version = "0.0.1", novaVersion = "0.0.1")
 public class NovaGui implements Loadable {
 
-	public static final String id = "novaexamplegui";
+	public static final String MOD_ID = "novaexamplegui";
 
 	public static BlockFactory blockTest;
 	public static ItemFactory itemBlockTest;
@@ -51,11 +51,11 @@ public class NovaGui implements Loadable {
 	public final RecipeManager recipeManager;
 
 	public NovaGui(BlockManager blockManager,
-		ItemManager itemManager,
-		RenderManager renderManager,
-		GuiManager guiFactory,
-		RecipeManager recipeManager,
-		NetworkManager networkManager) {
+	               ItemManager itemManager,
+	               RenderManager renderManager,
+	               GuiManager guiFactory,
+	               RecipeManager recipeManager,
+	               NetworkManager networkManager) {
 		this.blockManager = blockManager;
 		this.itemManager = itemManager;
 		this.renderManager = renderManager;
@@ -103,11 +103,11 @@ public class NovaGui implements Loadable {
 
 	@Override
 	public void preInit() {
-		blockTest = blockManager.register(id + ":gui", BlockSimpleTest::new);
+		blockTest = blockManager.register(MOD_ID + ":gui", BlockSimpleTest::new);
 
 		itemBlockTest = itemManager.getItemFromBlock(blockTest);
 
-		steelTexture = renderManager.registerTexture(new BlockTexture(id, "block_steel"));
+		steelTexture = renderManager.registerTexture(new BlockTexture(MOD_ID, "block_steel"));
 
 		// try to add a recipe
 		//ItemIngredient stickIngredient = ItemIngredient.forItem("minecraft:stick"); //TODO: This should be obtained from some dictonary too

@@ -21,10 +21,10 @@ import nova.core.render.texture.EntityTexture;
  *
  * @author Calclavia
  */
-@Mod(id = NovaBlock.id, name = "Nova Example Block", version = "0.0.1", novaVersion = "0.0.1")
+@Mod(id = NovaBlock.MOD_ID, name = "Nova Example Block", version = "0.0.1", novaVersion = "0.0.1")
 public class NovaBlock implements Loadable {
 
-	public static final String id = "novablock";
+	public static final String MOD_ID = "novablock";
 
 	public static BlockFactory blockStateful;
 	public static BlockFactory blockStateless;
@@ -47,10 +47,10 @@ public class NovaBlock implements Loadable {
 	public final RecipeManager recipeManager;
 
 	public NovaBlock(BlockManager blockManager,
-					 ItemManager itemManager,
-					 RenderManager renderManager,
-					 NetworkManager networkManager,
-					 RecipeManager recipeManager) {
+	                 ItemManager itemManager,
+	                 RenderManager renderManager,
+	                 NetworkManager networkManager,
+	                 RecipeManager recipeManager) {
 		this.blockManager = blockManager;
 		this.itemManager = itemManager;
 		this.renderManager = renderManager;
@@ -61,18 +61,17 @@ public class NovaBlock implements Loadable {
 
 	@Override
 	public void preInit() {
-		steelTexture = renderManager.registerTexture(new BlockTexture(id, "block_steel"));
-		grinderTexture = renderManager.registerTexture(new BlockTexture(id, "grinder"));
+		steelTexture = renderManager.registerTexture(new BlockTexture(MOD_ID, "block_steel"));
+		grinderTexture = renderManager.registerTexture(new BlockTexture(MOD_ID, "grinder"));
 
-		blockStateless = blockManager.register(id + ":simple", BlockStateless::new);
-		blockBasicDuster = blockManager.register(id + ":basic_duster", BasicDuster::new);
+		blockStateful = blockManager.register(MOD_ID + ":stateful", BlockStateful::new);
+		blockStateless = blockManager.register(MOD_ID + ":simple", BlockStateless::new);
 
 		itemBlockStateful = itemManager.getItemFromBlock(blockStateful);
 		itemBlockStateless = itemManager.getItemFromBlock(blockStateless);
 
-		grinderEntityTexture = renderManager.registerTexture(new EntityTexture(id, "grinder_entity"));
-
-		grinderModel = renderManager.registerModel(new TechneModelProvider(id, "grinder"));
+		grinderEntityTexture = renderManager.registerTexture(new EntityTexture(MOD_ID, "grinder_entity"));
+		grinderModel = renderManager.registerModel(new TechneModelProvider(MOD_ID, "grinder"));
 
 		// try to add a recipe
 		//ItemIngredient stickIngredient = ItemIngredient.forItem("minecraft:stick"); //TODO: This should be obtained from some dictonary too
