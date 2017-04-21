@@ -1,6 +1,0 @@
-# NOVA Test Language File
-# @author Calclavia
-
-# Blocks
-block.stateful.name=Stateful Block 
-block.simple.name=Stateless Block
